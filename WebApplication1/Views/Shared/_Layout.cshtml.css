@@ -46,3 +46,32 @@ button.accept-policy {
   white-space: nowrap;
   line-height: 60px;
 }
+/* RESET BÁSICO PRA NÃO QUEBRAR O BOOTSTRAP */
+ul, li {
+    margin: 0;
+    padding: 0;
+}
+
+/* NAVBAR */
+.navbar-nav {
+    display: flex;
+    gap: 20px;
+}
+
+    .navbar-nav .nav-item {
+        list-style: none;
+    }
+
+    .navbar-nav .nav-link {
+        color: #ffffff !important;
+        font-weight: 500;
+    }
+
+        .navbar-nav .nav-link:hover {
+            color: #00ffb3 !important;
+        }
+
+/* FOOTER */
+footer {
+    background-color: #f8f9fa;
+}
