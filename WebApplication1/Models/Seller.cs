@@ -5,33 +5,14 @@ namespace WebApplication1.Models
 {
     public class Seller
     {
-        
-    public int Id { get; set; }
-
-        [Required]
+        public int Id { get; set; }
         public string Name { get; set; }
-
-        [Required]
-        [EmailAddress]
         public string Email { get; set; }
-
         [DataType(DataType.Date)]
         public DateTime BirthDate { get; set; }
-
-        [Required]
         public double BaseSalary { get; set; }
-
-        // 🔥 CHAVE ESTRANGEIRA É O QUE É REQUIRED
-        [Required]
+        public Department Department { get; set; }
         public int DepartmentId { get; set; }
-
-        // 🔥 PROPRIEDADE DE NAVEGAÇÃO SEM REQUIRED
-        public Department? Department { get; set; }
-
-
-       
-
-
         public ICollection<SalesRecords> Sales { get; set; } = new List<SalesRecords>();
 
         public Seller()

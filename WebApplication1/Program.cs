@@ -12,6 +12,8 @@ builder.Services.AddScoped<SeedingService>();
 
 //conexao SellerServices
 builder.Services.AddScoped<SellerServices>();
+//conexao DepartmentServices
+builder.Services.AddScoped<DepartmentService>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

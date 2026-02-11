@@ -2,6 +2,9 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using WebApplication1.Data;
 using WebApplication1.Models;
+using WebApplication1.Models.ViewModels;
+using WebApplication1.Services;
+
 using WebApplication1.Services;
 
 namespace WebApplication1.Controllers
@@ -9,14 +12,13 @@ namespace WebApplication1.Controllers
     public class SellersController : Controller
     {
         private readonly SellerServices _sellerService;
-        private readonly WebApplication1Context _context;
+        private readonly DepartmentService _departmentService;
 
-        public SellersController(
-            SellerServices sellerService,
-            WebApplication1Context context)
+        public SellersController(SellerServices sellerService, DepartmentService departmentService)
         {
             _sellerService = sellerService;
-            _context = context;
+            _departmentService = departmentService;
+            
         }
 
         public IActionResult Index()
@@ -27,13 +29,9 @@ namespace WebApplication1.Controllers
 
         public IActionResult Create()
         {
-            ViewBag.Departments = new SelectList(
-                _context.Department.ToList(),
-                "Id",
-                "Name"
-            );
-
-            return View();
+            var departments = _departmentService.FindAll();
+            var viewModel = new SellerFormViewModel { Departments = departments };
+            return View(viewModel);
         }
 
 
@@ -41,18 +39,7 @@ namespace WebApplication1.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(Seller seller)
         {
-            if (!ModelState.IsValid)
-            {
-                ViewBag.Departments = new SelectList(
-                    _context.Department.ToList(),
-                    "Id",
-                    "Name"
-                );
-
-                return View(seller);
-            }
-
-            _sellerService.Insert(seller);
+           _sellerService.Insert(seller);
             return RedirectToAction(nameof(Index));
         }
 
