@@ -40,5 +40,20 @@ namespace WebApplication1.Models
             BaseSalary = baseSalary;
             Department = department;
         }
+
+        public void AddSales(SalesRecords sr)
+        {
+            Sales.Add(sr);
+        }
+
+        public void RemoveSales(SalesRecords sr)
+        {
+            Sales.Remove(sr);
+        }
+
+        public double TotalSales(DateTime initial, DateTime final)
+        {
+            return Sales.Where(sr => sr.Date >= initial && sr.Date <= final).Sum(sr => sr.Amount);
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System;
 using System.Linq;
+using WebApplication1.Migrations;
 namespace WebApplication1.Models
 
 {
@@ -17,6 +18,13 @@ namespace WebApplication1.Models
         {
             Name = name;
         }
+        
+    
+    public double TotalSales(DateTime Initial, DateTime final)
+        {
+            return Sellers.Sum(seller => seller.TotalSales(Initial, final));
+        }
+
     }
 }
 
